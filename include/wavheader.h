@@ -22,19 +22,19 @@ public:
 private:
 
     struct WavFileHeaderStruct {
-        char    __RIFF[4]    = {'R', 'I', 'F', 'F'};
-        int    chunkSize;                               // 36 + SubChunk2Size
-        char    __WAVE[4]    = {'W', 'A', 'V', 'E'};
-        char   __FMT[4]      = {'f', 'm', 't', ' '};
-        int    __SUB_CHUNK_1_SIZE = 16;
-        short  __AUDIO_FORAMT = 1;                      // 1 = PCM
-        short  numChannels;
-        int    sampleRate;
-        int    byteRate;                                // == SampleRate * NumChannels * BitsPerSample/8
-        short  blockAlign;                              // == NumChannels * BitsPerSample/8
-        short  bitPerSample = 8 * sizeof(short);
-        char   __DATA[4 ]     = {'D', 'A', 'T', 'A'};
-        unsigned int sampleLength;                      // == NumSamples * NumChannels * BitsPerSample/8
+        uint8_t   __RIFF[4]    = {'R', 'I', 'F', 'F'};
+        uint32_t chunkSize;                               // 36 + SubChunk2Size
+        uint8_t  __WAVE[4]     = {'W', 'A', 'V', 'E'};
+        uint8_t  __FMT[4]      = {'f', 'm', 't', ' '};
+        uint32_t __SUB_CHUNK_1_SIZE = 16;
+        uint16_t __AUDIO_FORAMT = 1;
+        uint16_t numChannels;
+        uint32_t sampleRate;
+        uint32_t byteRate;                                // == SampleRate * NumChannels * BitsPerSample/8
+        uint16_t blockAlign;                              // == NumChannels * BitsPerSample/8
+        uint16_t bitPerSample = 8 * sizeof(short);
+        uint8_t  __DATA[4]     = {'d', 'a', 't', 'a'};
+        uint32_t sampleLength;                      // == NumSamples * NumChannels * BitsPerSample/8
 
         WavFileHeaderStruct(wav::ChannelType channelType, int sampleLength, int sampleRate);
 

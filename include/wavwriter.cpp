@@ -6,7 +6,7 @@
 
 bool wav::writer::saveMonoPcmToWavFile(const short *sample, uint32_t sampleLength, short sampleRate, const std::string &filePath)
 {
-    std::ofstream stream(filePath.c_str(), std::ios::binary);
+    std::ofstream stream(filePath, std::ios::binary);
 
     if (!stream.is_open()) {
         return false;
@@ -21,4 +21,12 @@ bool wav::writer::saveMonoPcmToWavFile(const short *sample, uint32_t sampleLengt
     stream.close();
 
     return true;
+}
+
+bool wav::writer::saveMonoPcmToWavFile(wav::Wav &wav, const std::__cxx11::string &filePath)
+{
+    if (wav.getChannelType() == wav::ChannelType::mono)
+    {
+        saveMonoPcmToWavFile(wav.getMonoChannel().data(), wav.getMonoChannel().size(), wav.getSampleRate(), filePath);
+    }
 }

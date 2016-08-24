@@ -8,7 +8,7 @@ WavFileHeader::WavFileHeader(wav::ChannelType channelType, int sampleLength, int
 
 void WavFileHeader::writeToStream(std::ofstream &stream)
 {
-    stream.write( (const char*)&header, sizeof(WavFileHeaderStruct) );
+    stream.write( (const char*)&header, sizeof(struct WavFileHeaderStruct) );
 
 }
 
