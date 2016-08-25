@@ -1,6 +1,7 @@
 # wavpp
 Write wav files.
 
+```
 #include "wavgenerator.h"
 #include "wavwriter.h"
 #include "wavstream.h"
@@ -88,4 +89,4 @@ int main(int , char *[])
 
     return 0;
 }
-
+```
