@@ -1,5 +1,7 @@
-# wavpp
-Write wav files.
+# wavpp c++
+C++ source code for write wav files. Save streamed pcm samples.
+
+Example code:
 
 ```
 #include "wavgenerator.h"
