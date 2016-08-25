@@ -46,6 +46,11 @@ wav::SampleRate wav::Wav::getSampleRate() const
     return sampleRate;
 }
 
+uint32_t wav::Wav::getSamplesLength() const
+{
+    return channels[monoChannel].size();
+}
+
 wav::ChannelType wav::Wav::getChannelType() const
 {
     return channelType;

@@ -7,12 +7,19 @@
 
 namespace wav {
 
-namespace writer
+class writer
 {
-    bool saveMonoPcmToWavFile(const short* samples, uint32_t samplesLength, short sampleRate, const std::string &filePath);
+public:
+   static bool writeToFile(wav::Wav &wav, const std::string &filePath);
 
-    bool saveMonoPcmToWavFile(wav::Wav &wav, const std::string &filePath);
-}
+protected:
+    static std::vector<short> mixChannels(wav::Wav &wav);
+
+    static bool saveStereoPcmToWavFile(const short* leftChannel, const short* rightChannel, uint32_t samplesLength, SampleRate sampleRate, const std::string &filePath);
+
+    static bool writeSamplesToFile(const short* samples, uint32_t samplesLength, wav::ChannelType channelType, wav::SampleRate sampleRate, const std::string &filePath);
+
+};
 
 }
 

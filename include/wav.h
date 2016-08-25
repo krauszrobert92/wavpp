@@ -42,6 +42,8 @@ public:
 
     SampleRate getSampleRate() const;
 
+    uint32_t getSamplesLength() const;
+
 private:
 
     ChannelType channelType;

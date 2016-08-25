@@ -23,7 +23,7 @@ void wav::generator::addSinSignal(wav::Wav &wav, float amplitude, float frequenc
     }
     else
     {
-        addSinSignal(wav.getChannelType(), wav.getLeftChannel(), wav.getSampleRate(), amplitude, frequency);
-        addSinSignal(wav.getChannelType(), wav.getRightChannel(), wav.getSampleRate(), amplitude, frequency);
+        addSinSignal(wav::ChannelType::mono, wav.getLeftChannel(), wav.getSampleRate(), amplitude, frequency);
+        addSinSignal(wav::ChannelType::mono, wav.getRightChannel(), wav.getSampleRate(), amplitude, frequency);
     }
 }
