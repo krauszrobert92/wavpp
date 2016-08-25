@@ -5,6 +5,8 @@
 
 #include <fstream>
 
+namespace wav {
+
 /**
  * @brief The WavFileHeader class
  *
@@ -13,12 +15,6 @@
  */
 class WavFileHeader
 {
-public:
-
-    WavFileHeader(wav::ChannelType channelType, int sampleLength, int sampleRate);
-
-    void writeToStream(std::ofstream &stream);
-
 private:
 
     struct WavFileHeaderStruct {
@@ -34,15 +30,26 @@ private:
         uint16_t blockAlign;                              // == NumChannels * BitsPerSample/8
         uint16_t bitPerSample = 8 * sizeof(short);
         uint8_t  __DATA[4]     = {'d', 'a', 't', 'a'};
-        uint32_t sampleLength;                      // == NumSamples * NumChannels * BitsPerSample/8
+        uint32_t samplesLength;                      // == NumSamples * NumChannels * BitsPerSample/8
 
-        WavFileHeaderStruct(wav::ChannelType channelType, int sampleLength, int sampleRate);
+        WavFileHeaderStruct(wav::ChannelType channelType, int samplesLength, int sampleRate);
+
+        void setSampleLength(uint32_t samplesLength);
 
     } __attribute__ ( (packed) );
 
+public:
+
+    WavFileHeader(wav::ChannelType channelType, int sampleLength, int sampleRate);
+
+    void writeToStream(std::ofstream &stream);
+
+    WavFileHeaderStruct& getHeader();
 
 private:
     WavFileHeaderStruct header;
 };
+
+}
 
 #endif // WAVHEADER_H

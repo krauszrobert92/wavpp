@@ -9,18 +9,20 @@ wav::Wav::Wav(wav::ChannelType channelType, SampleRate sampleRate, uint32_t samp
     if (channelType == ChannelType::mono)
     {
         channels[monoChannel].resize(sampleLength);
-    } else
+    }
+    else
     {
         channels[leftChannel].resize(sampleLength);
         channels[rightChannel].resize(sampleLength);
     }
-
 }
 
 std::vector<short> & wav::Wav::getMonoChannel()
 {
   if (channelType != ChannelType::mono)
-      throw std::runtime_error("wav::Wav::getMonoChannel wav has not mono channel");
+  {
+      throw std::runtime_error("wav::Wav::getMonoChannel wav has not got mono channel");
+  }
 
   return channels[monoChannel];
 }
@@ -28,7 +30,9 @@ std::vector<short> & wav::Wav::getMonoChannel()
 std::vector<short> & wav::Wav::getLeftChannel()
 {
     if (channelType == ChannelType::mono)
-        throw std::runtime_error("wav::Wav::getMonoChannel wav has not stereo channels");
+    {
+        throw std::runtime_error("wav::Wav::getMonoChannel wav has not got stereo channels");
+    }
 
     return channels[leftChannel];
 }
@@ -36,7 +40,9 @@ std::vector<short> & wav::Wav::getLeftChannel()
 std::vector<short> & wav::Wav::getRightChannel()
 {
     if (channelType == ChannelType::mono)
-        throw std::runtime_error("wav::Wav::getMonoChannel wav has not stereo channels");
+    {
+        throw std::runtime_error("wav::Wav::getMonoChannel wav has not got stereo channels");
+    }
 
     return channels[rightChannel];
 }

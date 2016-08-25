@@ -3,6 +3,7 @@
 
 #include <inttypes.h>
 #include <string>
+
 #include "wav.h"
 
 namespace wav {

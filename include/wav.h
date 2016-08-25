@@ -56,7 +56,4 @@ private:
 
 }
 
-#include "wavwriter.h"
-#include "wavgenerator.h"
-
 #endif // WAV_H

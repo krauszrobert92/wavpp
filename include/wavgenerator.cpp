@@ -27,3 +27,21 @@ void wav::generator::addSinSignal(wav::Wav &wav, float amplitude, float frequenc
         addSinSignal(wav::ChannelType::mono, wav.getRightChannel(), wav.getSampleRate(), amplitude, frequency);
     }
 }
+
+std::vector<short> wav::generator::mixChannels(wav::Wav &wav)
+{
+    return mixChannels(wav.getLeftChannel().data(), wav.getRightChannel().data(), wav.getSamplesLength());
+}
+
+std::vector<short> wav::generator::mixChannels(const short *leftSamples, const short *rightSamples, uint32_t samplesLength)
+{
+    std::vector<short> chanels( 2 * samplesLength );
+
+    for (uint32_t i = 0; i < samplesLength; i++)
+    {
+        chanels[ 2*i ] = leftSamples [i];
+        chanels[ 2*i + 1 ] = rightSamples [i];
+    }
+
+    return chanels;
+}
